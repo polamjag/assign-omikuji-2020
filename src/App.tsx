@@ -173,13 +173,16 @@ const HatenaUserChip: React.FC<{ readonly username: string }> = ({
 const Icon: React.FC<{ readonly username: string; readonly size?: number }> = ({
   username,
   size = 16,
-}) => (
-  <img
-    src={`https://cdn.profile-image.st-hatena.com/users/${username}/profile_256x256.png`}
-    alt=""
-    width={size}
-    height={size}
-  />
-);
+}) =>
+  username === "" ? (
+    <img width={size} height={size} alt="" />
+  ) : (
+    <img
+      src={`https://cdn.profile-image.st-hatena.com/users/${username}/profile_256x256.png`}
+      alt=""
+      width={size}
+      height={size}
+    />
+  );
 
 export default App;
