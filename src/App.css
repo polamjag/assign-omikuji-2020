@@ -46,6 +46,10 @@ button {
   background: #ccc;
   border-radius: 2em;
   margin-left: 0.3em;
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  padding: 0;
 }
 .userlist-user-x-btn:hover {
   background: #aaa;
