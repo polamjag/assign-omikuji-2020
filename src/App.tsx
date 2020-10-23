@@ -101,20 +101,25 @@ function App() {
         ))}
       </ul>
       <div className="add-form">
-        <Icon username={username} />
-        <input
-          onKeyDown={handleKeyDown}
-          onChange={onChange}
-          value={username}
-          placeholder="Hatena ID"
-        />
-        <button onClick={onClick} type="button">
-          add user
-        </button>
+        <span>
+          <Icon username={username} />
+          <input
+            onKeyDown={handleKeyDown}
+            onChange={onChange}
+            value={username}
+            placeholder="Hatena ID"
+          />
+          <button onClick={onClick} type="button">
+            Add user
+          </button>
+        </span>
       </div>
       {currentIndex !== undefined && (
         <div className="pixelated omikuji">
-          <div onClick={hitLuckyUser} style={{ background: "white", height: '256px' }}>
+          <div
+            onClick={hitLuckyUser}
+            style={{ background: "white", height: "256px" }}
+          >
             <Icon username={users[currentIndex]} size={256} />
           </div>
         </div>

@@ -36,6 +36,28 @@ button {
 .add-form {
   margin: 0.7em 0 1em 0;
 }
+.add-form span {
+  border-bottom: 2px solid #e2e2e2;
+  display: inline-block;
+  box-sizing: border-box;
+}
+.add-form img {
+  vertical-align: middle;
+}
+.add-form input {
+  padding: .5em;
+  border: none;
+  background: none;
+  width: 160px;
+}
+.add-form button {
+  padding: .5em;
+  border: none;
+  background: #e2e2e2;
+}
+.add-form button:hover {
+  background: grey;
+}
 
 .omikuji {
   cursor: pointer;
