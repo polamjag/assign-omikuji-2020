@@ -43,13 +43,13 @@ function App() {
     location.hash = users.join(",");
   }, [users]);
 
-  const [userName, setUserName] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setUserName(e.currentTarget.value);
+    setUsername(e.currentTarget.value);
   };
   const onClick = (): void => {
-    setUsers([...users, userName]);
-    setUserName("");
+    setUsers([...users, username]);
+    setUsername("");
   };
 
   const hitLuckyUser = (): void => {
@@ -75,7 +75,7 @@ function App() {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       onClick();
-    } else if (event.key === "Backspace" && userName === "") {
+    } else if (event.key === "Backspace" && username === "") {
       removeUserAt(users.length - 1);
     }
   };
@@ -85,17 +85,17 @@ function App() {
       <ul className="userlist">
         {users.map((user, i) => (
           <li key={user}>
-            <UserChip username={user} />
+            <HatenaUserChip username={user} />
             <button onClick={() => removeUserAt(i)}>x</button>
           </li>
         ))}
       </ul>
       <div className="add-form">
-        <Icon username={userName} />
+        <Icon username={username} />
         <input
           onKeyDown={handleKeyDown}
           onChange={onChange}
-          value={userName}
+          value={username}
           placeholder="Hatena ID"
         />
         <button onClick={onClick} type="button">
@@ -112,7 +112,7 @@ function App() {
       <div className="lucky-users">
         {luckyUsers.map((lu, i) => (
           <div key={i}>
-            {lu.beenLuckyAt.toISOString()}: <UserChip username={lu.name} />
+            {lu.beenLuckyAt.toISOString()}: <HatenaUserChip username={lu.name} />
           </div>
         ))}
       </div>
@@ -123,7 +123,7 @@ function App() {
         </a>{" "}
         by{" "}
         <a href="https://blog.hatena.ne.jp/hitode909/">
-          <UserChip username="hitode909" />
+          <HatenaUserChip username="hitode909" />
         </a>
         .
       </footer>
@@ -131,7 +131,7 @@ function App() {
   );
 }
 
-const UserChip: React.FC<{ readonly username: string }> = ({ username }) => (
+const HatenaUserChip: React.FC<{ readonly username: string }> = ({ username }) => (
   <span>
     <Icon username={username} /> id:{username}
   </span>
