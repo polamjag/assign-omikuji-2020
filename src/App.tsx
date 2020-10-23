@@ -85,6 +85,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Assign Omikuji 2020</h1>
       <ul className="userlist">
         {users.map((user, i) => (
           <li key={user} className="userlist-user">
