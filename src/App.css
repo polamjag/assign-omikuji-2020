@@ -144,3 +144,6 @@ footer {
   font-size: 0.8em;
   line-height: 1.5;
 }
+footer img {
+  vertical-align: text-top;
+}
