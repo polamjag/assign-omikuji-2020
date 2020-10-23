@@ -125,7 +125,8 @@ function App() {
         <a href="https://blog.hatena.ne.jp/hitode909/">
           <HatenaUserChip username="hitode909" />
         </a>
-        .
+        <br />
+        Open source at <a href="https://github.com/polamjag/assign-omikuji-2020">polamjag/assign-omikuji-2020</a>
       </footer>
     </div>
   );
