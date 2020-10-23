@@ -84,9 +84,16 @@ function App() {
     <div className="App">
       <ul className="userlist">
         {users.map((user, i) => (
-          <li key={user}>
+          <li key={user} className="userlist-user">
             <HatenaUserChip username={user} />
-            <button onClick={() => removeUserAt(i)}>x</button>
+            <button
+              onClick={() => removeUserAt(i)}
+              aria-label="Remove this user"
+              title="Remove this user"
+              className="userlist-user-x-btn"
+            >
+              ✗
+            </button>
           </li>
         ))}
       </ul>
@@ -104,7 +111,7 @@ function App() {
       </div>
       {currentIndex !== undefined && (
         <div className="pixelated omikuji">
-          <div onClick={hitLuckyUser} style={{background: 'white'}}>
+          <div onClick={hitLuckyUser} style={{ background: "white" }}>
             <Icon username={users[currentIndex]} size={256} />
           </div>
         </div>
@@ -112,7 +119,8 @@ function App() {
       <div className="lucky-users">
         {luckyUsers.map((lu, i) => (
           <div key={i}>
-            {lu.beenLuckyAt.toISOString()}: <HatenaUserChip username={lu.name} />
+            {lu.beenLuckyAt.toISOString()}:{" "}
+            <HatenaUserChip username={lu.name} />
           </div>
         ))}
       </div>
@@ -126,13 +134,18 @@ function App() {
           <HatenaUserChip username="hitode909" />
         </a>
         <br />
-        Open source at <a href="https://github.com/polamjag/assign-omikuji-2020">polamjag/assign-omikuji-2020</a>
+        Open source at{" "}
+        <a href="https://github.com/polamjag/assign-omikuji-2020">
+          polamjag/assign-omikuji-2020
+        </a>
       </footer>
     </div>
   );
 }
 
-const HatenaUserChip: React.FC<{ readonly username: string }> = ({ username }) => (
+const HatenaUserChip: React.FC<{ readonly username: string }> = ({
+  username,
+}) => (
   <span>
     <Icon username={username} /> id:{username}
   </span>

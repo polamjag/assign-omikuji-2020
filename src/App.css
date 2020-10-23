@@ -23,6 +23,15 @@ button {
 .userlist li:not(:first-child) {
   margin-left: 0.5em;
 }
+.userlist-user-x-btn {
+  border: none;
+  background: #ccc;
+  border-radius: 2em;
+  margin-left: .3em;
+}
+.userlist-user-x-btn:hover {
+  background: #aaa;
+}
 
 .add-form {
   margin: 0.7em 0 1em 0;
