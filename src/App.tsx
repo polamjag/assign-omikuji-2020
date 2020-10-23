@@ -104,7 +104,7 @@ function App() {
       </div>
       {currentIndex !== undefined && (
         <div className="pixelated omikuji">
-          <div onClick={hitLuckyUser}>
+          <div onClick={hitLuckyUser} style={{background: 'white'}}>
             <Icon username={users[currentIndex]} size={256} />
           </div>
         </div>

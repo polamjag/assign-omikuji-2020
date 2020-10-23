@@ -1,7 +1,9 @@
-.App {
-  text-align: center;
+body, input, button {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Open Sans", "Helvetica Neue", sans-serif;
+}
+.App {
+  text-align: center;
 }
 
 button {
@@ -33,20 +35,21 @@ button {
 }
 .omikuji img {
   background: #fff;
+  opacity: .2;
 }
 .omikuji:hover {
-  animation: NAME-YOUR-ANIMATION 0.5s infinite;
+  animation: NAME-YOUR-ANIMATION 1s infinite;
 }
 
 @keyframes NAME-YOUR-ANIMATION {
   0% {
-    background: red;
+    background: #ff5656;
   }
   50% {
-    background: yellow;
+    background: #cdff56;
   }
   100% {
-    background: red;
+    background: #ff5656;
   }
 }
 
@@ -59,6 +62,10 @@ button {
 }
 
 footer {
+  border-top: 1px solid lightgray;
+  display: inline-block;
+  padding: 1em 3em;
+  margin-top: 1em;
   font-size: .8em;
   line-height: 1.5;
 }
