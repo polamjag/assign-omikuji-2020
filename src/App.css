@@ -1,4 +1,6 @@
-body, input, button {
+body,
+input,
+button {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -36,7 +38,7 @@ button {
   border: none;
   background: #ccc;
   border-radius: 2em;
-  margin-left: .3em;
+  margin-left: 0.3em;
 }
 .userlist-user-x-btn:hover {
   background: #aaa;
@@ -54,14 +56,14 @@ button {
   vertical-align: middle;
 }
 .add-form input {
-  padding: .5em;
+  padding: 0.5em;
   margin: 0;
   border: none;
   background: none;
   width: 160px;
 }
 .add-form button {
-  padding: .5em;
+  padding: 0.5em;
   margin: 0;
   border: none;
   background: #e2e2e2;
@@ -74,13 +76,13 @@ button {
   cursor: pointer;
   display: inline-block;
   padding: 1em;
-  margin-top: .3em;
+  margin-top: 0.3em;
 }
 .omikuji img {
   background: #fff;
 
   /* avoid pokémon shock */
-  opacity: .2;
+  opacity: 0.2;
 }
 .click-to-assign {
   font-weight: 900;
@@ -123,7 +125,7 @@ button {
 }
 
 .lucky-users {
-  font-size: .92em;
+  font-size: 0.92em;
   margin-top: 3em;
   line-height: 1.6em;
 }
@@ -133,6 +135,6 @@ footer {
   display: inline-block;
   padding: 1em 3em;
   margin-top: 1em;
-  font-size: .8em;
+  font-size: 0.8em;
   line-height: 1.5;
 }
