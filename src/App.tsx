@@ -114,19 +114,22 @@ function App() {
             Add user
           </button>
         </span>
-        <div style={{marginTop: '.4em', fontSize: '.6em', color: 'grey'}}>
+        <div style={{ marginTop: ".4em", fontSize: ".6em", color: "grey" }}>
           [Backspace] to remove last user / [Enter] to Add user
         </div>
       </div>
       {currentIndex !== undefined && (
-        <div className="pixelated omikuji">
-          <div
-            onClick={hitLuckyUser}
-            style={{ background: "white", height: "256px" }}
-          >
-            <Icon username={users[currentIndex]} size={256} />
+        <>
+          <div className="pixelated omikuji">
+            <div
+              onClick={hitLuckyUser}
+              style={{ background: "white", height: "256px" }}
+            >
+              <Icon username={users[currentIndex]} size={256} />
+            </div>
           </div>
-        </div>
+          <div className="click-to-assign">CLICK TO ASSIGN</div>
+        </>
       )}
       <div className="lucky-users">
         {luckyUsers.map((lu, i) => (

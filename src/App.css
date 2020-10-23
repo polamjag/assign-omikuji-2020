@@ -74,6 +74,7 @@ button {
   cursor: pointer;
   display: inline-block;
   padding: 1em;
+  margin-top: .3em;
 }
 .omikuji img {
   background: #fff;
@@ -81,8 +82,17 @@ button {
   /* avoid pokémon shock */
   opacity: .2;
 }
+.click-to-assign {
+  font-weight: 900;
+  font-size: 1em;
+  font-style: oblique;
+  margin-top: -3em;
+}
 .omikuji:hover {
   animation: super-flash 1s infinite;
+}
+.omikuji:hover + .click-to-assign {
+  animation: super-flash-text 1s infinite;
 }
 
 @keyframes super-flash {
@@ -96,6 +106,17 @@ button {
     background: #ff5656;
   }
 }
+@keyframes super-flash-text {
+  0% {
+    color: #ff5656;
+  }
+  50% {
+    color: #cdff56;
+  }
+  100% {
+    color: #ff5656;
+  }
+}
 
 .pixelated {
   image-rendering: pixelated;
@@ -103,7 +124,7 @@ button {
 
 .lucky-users {
   font-size: .92em;
-  margin-top: 1em;
+  margin-top: 3em;
   line-height: 1.6em;
 }
 
