@@ -128,10 +128,7 @@ function App() {
       {currentIndex !== undefined && (
         <>
           <div className="pixelated omikuji">
-            <button
-              onClick={hitLuckyUser}
-              className="omikuji-button"
-            >
+            <button onClick={hitLuckyUser} className="omikuji-button">
               <Icon username={users[currentIndex]} size={256} />
             </button>
           </div>
