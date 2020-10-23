@@ -121,12 +121,12 @@ function App() {
       {currentIndex !== undefined && (
         <>
           <div className="pixelated omikuji">
-            <div
+            <button
               onClick={hitLuckyUser}
-              style={{ background: "white", height: "256px" }}
+              className="omikuji-button"
             >
               <Icon username={users[currentIndex]} size={256} />
-            </div>
+            </button>
           </div>
           <div className="click-to-assign">CLICK TO ASSIGN</div>
         </>
