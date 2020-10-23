@@ -5,6 +5,10 @@ button {
     "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+body {
+  background-color: #fff;
+}
+
 .App {
   text-align: center;
 }
@@ -66,7 +70,7 @@ button {
   width: 160px;
 }
 .add-form button {
-  padding: 0.5em;
+  padding: 0.5em 0.7em;
   margin: 0;
   border: none;
   background: #e2e2e2;
