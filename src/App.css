@@ -47,10 +47,10 @@ button {
   opacity: .2;
 }
 .omikuji:hover {
-  animation: NAME-YOUR-ANIMATION 1s infinite;
+  animation: super-flash 1s infinite;
 }
 
-@keyframes NAME-YOUR-ANIMATION {
+@keyframes super-flash {
   0% {
     background: #ff5656;
   }
