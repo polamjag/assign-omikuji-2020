@@ -55,12 +55,14 @@ button {
 }
 .add-form input {
   padding: .5em;
+  margin: 0;
   border: none;
   background: none;
   width: 160px;
 }
 .add-form button {
   padding: .5em;
+  margin: 0;
   border: none;
   background: #e2e2e2;
 }
