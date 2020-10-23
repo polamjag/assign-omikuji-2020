@@ -113,6 +113,9 @@ function App() {
             Add user
           </button>
         </span>
+        <div style={{marginTop: '.4em', fontSize: '.6em', color: 'grey'}}>
+          [Backspace] to remove last user / [Enter] to Add user
+        </div>
       </div>
       {currentIndex !== undefined && (
         <div className="pixelated omikuji">
