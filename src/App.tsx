@@ -133,7 +133,7 @@ function App() {
       )}
       <div className="lucky-users">
         {luckyUsers.map((lu, i) => (
-          <div key={i}>
+          <div key={i} className="lucky-user-line">
             {lu.beenLuckyAt.toISOString()}:{" "}
             <HatenaUserChip username={lu.name} />
           </div>
