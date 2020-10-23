@@ -1,38 +1,63 @@
 .App {
   text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.userlist {
+  list-style-type: none;
+  padding: 0;
+}
+.userlist li {
+  display: inline-block;
+  background: #e2e2e2;
+  padding: 0.3em 0.5em;
+  border-radius: 1em;
+}
+.userlist li:not(:first-child) {
+  margin-left: 0.5em;
+}
+
+.add-form {
+  margin: 0.7em 0 1em 0;
+}
+
+.omikuji {
+  cursor: pointer;
+  display: inline-block;
+  padding: 1em;
+}
+.omikuji img {
+  background: #fff;
+}
+.omikuji:hover {
+  animation: NAME-YOUR-ANIMATION 0.5s infinite;
+}
+
+@keyframes NAME-YOUR-ANIMATION {
+  0% {
+    background: red;
+  }
+  50% {
+    background: yellow;
+  }
+  100% {
+    background: red;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.pixelated {
+  image-rendering: pixelated;
 }
 
-.App-link {
-  color: #61dafb;
+.lucky-users {
+  margin-top: 1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer {
+  font-size: .8em;
 }
