@@ -48,6 +48,9 @@ function App() {
     setUsername(e.currentTarget.value);
   };
   const onClick = (): void => {
+    if (username === "") {
+      return;
+    }
     setUsers([...users, username]);
     setUsername("");
   };
