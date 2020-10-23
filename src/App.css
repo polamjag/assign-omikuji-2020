@@ -100,7 +100,9 @@ button {
 }
 
 .lucky-users {
+  font-size: .92em;
   margin-top: 1em;
+  line-height: 1.6em;
 }
 
 footer {
