@@ -44,6 +44,8 @@ button {
 }
 .omikuji img {
   background: #fff;
+
+  /* avoid pokémon shock */
   opacity: .2;
 }
 .omikuji:hover {
