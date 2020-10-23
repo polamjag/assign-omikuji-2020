@@ -143,7 +143,7 @@ const Icon: React.FC<{ readonly username: string; readonly size?: number }> = ({
   size = 16,
 }) => (
   <img
-    src={`https://cdn.profile-image.st-hatena.com/users/${username}/profile.png`}
+    src={`https://cdn.profile-image.st-hatena.com/users/${username}/profile_256x256.png`}
     alt=""
     width={size}
     height={size}
