@@ -34,6 +34,7 @@ button {
   background: #e2e2e2;
   padding: 0.3em 0.5em;
   border-radius: 1em;
+  margin-bottom: .5em;
 }
 .userlist li img {
   vertical-align: text-top;
