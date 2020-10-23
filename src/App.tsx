@@ -114,8 +114,15 @@ function App() {
             Add user
           </button>
         </span>
-        <div style={{ marginTop: ".4em", fontSize: ".6em", color: "grey" }}>
-          [Backspace] to remove last user / [Enter] to Add user
+        <div className="small-description">
+          <kbd aria-label="backspace" title="[Backspace]">
+            ⌫
+          </kbd>{" "}
+          to remove last user /{" "}
+          <kbd aria-label="enter" title="[Enter]">
+            ↩
+          </kbd>{" "}
+          to add user
         </div>
       </div>
       {currentIndex !== undefined && (

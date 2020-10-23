@@ -82,6 +82,18 @@ button {
 .add-form button:hover {
   background: grey;
 }
+.small-description {
+  margin-top: .4em;
+  font-size: .7em;
+  color: grey;
+}
+.small-description kbd {
+  font-size: 1.5em;
+  background: grey;
+  color: white;
+  padding: 0em .3em;
+  border-radius: .3em;
+}
 
 .omikuji {
   cursor: pointer;
