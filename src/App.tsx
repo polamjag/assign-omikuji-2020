@@ -10,6 +10,26 @@ interface LuckyUser {
   readonly user: User;
 }
 
+const getUsersFromLocationHash = (): User[] => {
+  /* eslint-disable no-restricted-globals */
+
+  if (location.hash === "") {
+    return [];
+  }
+
+  return location.hash
+    .substr(1)
+    .split(",")
+    .map((name) => ({ name }));
+
+  /* eslint-enable no-restricted-globals */
+};
+
+const setUsersToLocationHash = (users: User[]): void => {
+  // eslint-disable-next-line no-restricted-globals
+  location.hash = users.map((u) => u.name).join(",");
+};
+
 function App() {
   const [users, setUsers] = useState<Array<User>>([]);
   const [currentIndex, setCurrentIndex] = useState<number | undefined>(
@@ -35,21 +55,10 @@ function App() {
   }, [users, currentIndex, animate]);
 
   useEffect(() => {
-    // eslint-disable-next-line no-restricted-globals
-    if (location.hash === "") {
-      return;
-    }
-    setUsers(
-      // eslint-disable-next-line no-restricted-globals
-      location.hash
-        .substr(1)
-        .split(",")
-        .map((name) => ({ name }))
-    );
+    setUsers(getUsersFromLocationHash());
   }, []);
   useEffect(() => {
-    // eslint-disable-next-line no-restricted-globals
-    location.hash = users.map(u => u.name).join(",");
+    setUsersToLocationHash(users);
   }, [users]);
 
   const [username, setUsername] = useState<string>("");
