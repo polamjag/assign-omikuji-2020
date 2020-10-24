@@ -41,18 +41,6 @@ function App() {
     setUsersToLocationHash(users);
   }, [users]);
 
-  const [username, setUsername] = useState<string>("");
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setUsername(e.currentTarget.value);
-  };
-  const onClick = (): void => {
-    if (username === "") {
-      return;
-    }
-    setUsers([...users, { name: username }]);
-    setUsername("");
-  };
-
   const hitLuckyUser = (user: User): void => {
     const lu: LuckyUser = {
       beenLuckyAt: new Date(),
@@ -69,12 +57,11 @@ function App() {
     setUsers([...users]);
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      onClick();
-    } else if (event.key === "Backspace" && username === "") {
-      removeUserAt(users.length - 1);
-    }
+  const onAddUserByName = (name: string): void => {
+    setUsers([...users, { name }]);
+  };
+  const requestRemoveLastUser = (): void => {
+    removeUserAt(users.length - 1);
   };
 
   return (
@@ -95,30 +82,10 @@ function App() {
           </li>
         ))}
       </ul>
-      <div className="add-form">
-        <span>
-          <HatenaUserIcon username={username} />
-          <input
-            onKeyDown={handleKeyDown}
-            onChange={onChange}
-            value={username}
-            placeholder="Hatena ID"
-          />
-          <button onClick={onClick} type="button">
-            Add user
-          </button>
-        </span>
-        <div className="small-description">
-          <kbd aria-label="backspace" title="[Backspace]">
-            ⌫
-          </kbd>{" "}
-          to remove last user /{" "}
-          <kbd aria-label="enter" title="[Enter]">
-            ↩
-          </kbd>{" "}
-          to add user
-        </div>
-      </div>
+      <AddForm
+        onAddUserByName={onAddUserByName}
+        requestRemoveLastUser={requestRemoveLastUser}
+      />
       <IconOmikujiSlot users={users} onSelectUser={hitLuckyUser} />
       <div className="lucky-users">
         {luckyUsers.map((lu, i) => (
@@ -131,6 +98,57 @@ function App() {
     </div>
   );
 }
+
+const AddForm: React.FC<{
+  onAddUserByName: (name: string) => void;
+  requestRemoveLastUser: () => void;
+}> = ({ onAddUserByName, requestRemoveLastUser }) => {
+  const [username, setUsername] = useState<string>("");
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setUsername(e.currentTarget.value);
+  };
+  const onClick = (): void => {
+    if (username === "") {
+      return;
+    }
+    onAddUserByName(username);
+    setUsername("");
+  };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onClick();
+    } else if (event.key === "Backspace" && username === "") {
+      requestRemoveLastUser();
+    }
+  };
+
+  return (
+    <div className="add-form">
+      <span>
+        <HatenaUserIcon username={username} />
+        <input
+          onKeyDown={handleKeyDown}
+          onChange={onChange}
+          value={username}
+          placeholder="Hatena ID"
+        />
+        <button onClick={onClick} type="button">
+          Add user
+        </button>
+      </span>
+      <div className="small-description">
+        <kbd aria-label="backspace" title="[Backspace]">
+          ⌫
+        </kbd>{" "}
+        to remove last user /{" "}
+        <kbd aria-label="enter" title="[Enter]">
+          ↩
+        </kbd>{" "}
+        to add user
+      </div>
+    </div>
+  );
+};
 
 const IconOmikujiSlot: React.FC<{
   readonly users: User[];
