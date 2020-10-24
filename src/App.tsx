@@ -127,21 +127,7 @@ function App() {
           </div>
         ))}
       </div>
-      <footer>
-        Heavily inspired by{" "}
-        <a href="https://hitode909.appspot.com/assign_omikuji/">
-          "アサインおみくじ"
-        </a>{" "}
-        by{" "}
-        <a href="https://blog.hatena.ne.jp/hitode909/">
-          <HatenaUserChip user={{ name: "hitode909" }} />
-        </a>
-        <br />
-        Open source at{" "}
-        <a href="https://github.com/polamjag/assign-omikuji-2020">
-          polamjag/assign-omikuji-2020
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }
@@ -213,5 +199,23 @@ const HatenaUserIcon: React.FC<{
       className="hatena-user-icon hatena-user-icon-nonempty"
     />
   );
+
+const Footer = () => (
+  <footer>
+    Heavily inspired by{" "}
+    <a href="https://hitode909.appspot.com/assign_omikuji/">
+      "アサインおみくじ"
+    </a>{" "}
+    by{" "}
+    <a href="https://blog.hatena.ne.jp/hitode909/">
+      <HatenaUserChip user={{ name: "hitode909" }} />
+    </a>
+    <br />
+    Open source at{" "}
+    <a href="https://github.com/polamjag/assign-omikuji-2020">
+      polamjag/assign-omikuji-2020
+    </a>
+  </footer>
+);
 
 export default App;
