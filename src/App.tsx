@@ -143,7 +143,7 @@ function App() {
           to add user
         </div>
       </div>
-      {currentIndex !== undefined && (
+      {currentIndex !== undefined && users[currentIndex] && (
         <>
           <div className="pixelated omikuji">
             <button onClick={hitLuckyUser} className="omikuji-button">
