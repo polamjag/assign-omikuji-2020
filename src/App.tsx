@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 
+interface User {
+  name: string;
+}
+
 interface LuckyUser {
   readonly beenLuckyAt: Date;
-  readonly name: string;
+  readonly user: User;
 }
 
 function App() {
-  const [users, setUsers] = useState<Array<string>>([]);
+  const [users, setUsers] = useState<Array<User>>([]);
   const [currentIndex, setCurrentIndex] = useState<number | undefined>(
     undefined
   );
@@ -35,8 +39,13 @@ function App() {
     if (location.hash === "") {
       return;
     }
-    // eslint-disable-next-line no-restricted-globals
-    setUsers(location.hash.substr(1).split(","));
+    setUsers(
+      // eslint-disable-next-line no-restricted-globals
+      location.hash
+        .substr(1)
+        .split(",")
+        .map((name) => ({ name }))
+    );
   }, []);
   useEffect(() => {
     // eslint-disable-next-line no-restricted-globals
@@ -51,7 +60,7 @@ function App() {
     if (username === "") {
       return;
     }
-    setUsers([...users, username]);
+    setUsers([...users, { name: username }]);
     setUsername("");
   };
 
@@ -62,10 +71,10 @@ function App() {
 
     const lu: LuckyUser = {
       beenLuckyAt: new Date(),
-      name: users[currentIndex],
+      user: users[currentIndex],
     };
 
-    alert(lu.name);
+    alert(lu.user.name);
 
     setLuckyUsers([lu, ...luckyUsers]);
   };
@@ -88,8 +97,8 @@ function App() {
       <h1>Assign Omikuji 2020</h1>
       <ul className="userlist">
         {users.map((user, i) => (
-          <li key={user} className="userlist-user">
-            <HatenaUserChip username={user} />
+          <li key={user.name} className="userlist-user">
+            <HatenaUserChip user={user} />
             <button
               onClick={() => removeUserAt(i)}
               aria-label="Remove this user"
@@ -103,7 +112,7 @@ function App() {
       </ul>
       <div className="add-form">
         <span>
-          <Icon username={username} />
+          <HatenaUserIcon username={username} />
           <input
             onKeyDown={handleKeyDown}
             onChange={onChange}
@@ -129,7 +138,7 @@ function App() {
         <>
           <div className="pixelated omikuji">
             <button onClick={hitLuckyUser} className="omikuji-button">
-              <Icon username={users[currentIndex]} size={256} />
+              <HatenaUserIcon username={users[currentIndex].name} size={256} />
             </button>
           </div>
           <div className="click-to-assign">CLICK TO ASSIGN</div>
@@ -138,8 +147,7 @@ function App() {
       <div className="lucky-users">
         {luckyUsers.map((lu, i) => (
           <div key={i} className="lucky-user-line">
-            {lu.beenLuckyAt.toISOString()}:{" "}
-            <HatenaUserChip username={lu.name} />
+            {lu.beenLuckyAt.toISOString()}: <HatenaUserChip user={lu.user} />
           </div>
         ))}
       </div>
@@ -150,7 +158,7 @@ function App() {
         </a>{" "}
         by{" "}
         <a href="https://blog.hatena.ne.jp/hitode909/">
-          <HatenaUserChip username="hitode909" />
+          <HatenaUserChip user={{ name: "hitode909" }} />
         </a>
         <br />
         Open source at{" "}
@@ -162,18 +170,16 @@ function App() {
   );
 }
 
-const HatenaUserChip: React.FC<{ readonly username: string }> = ({
-  username,
-}) => (
+const HatenaUserChip: React.FC<{ readonly user: User }> = ({ user }) => (
   <span>
-    <Icon username={username} /> id:{username}
+    <HatenaUserIcon username={user.name} /> id:{user.name}
   </span>
 );
 
-const Icon: React.FC<{ readonly username: string; readonly size?: number }> = ({
-  username,
-  size = 16,
-}) =>
+const HatenaUserIcon: React.FC<{
+  readonly username: string;
+  readonly size?: number;
+}> = ({ username, size = 16 }) =>
   username === "" ? (
     <img width={size} height={size} alt="" />
   ) : (
