@@ -190,13 +190,20 @@ const HatenaUserIcon: React.FC<{
   readonly size?: number;
 }> = ({ username, size = 16 }) =>
   username === "" ? (
-    <img width={size} height={size} alt="" />
+    <img
+      width={size}
+      height={size}
+      alt=""
+      src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+      className="hatena-user-icon hatena-user-icon-empty"
+    />
   ) : (
     <img
       src={`https://cdn.profile-image.st-hatena.com/users/${username}/profile_256x256.png`}
       alt=""
       width={size}
       height={size}
+      className="hatena-user-icon hatena-user-icon-nonempty"
     />
   );
 

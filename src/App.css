@@ -65,8 +65,12 @@ button {
   display: inline-block;
   box-sizing: border-box;
 }
-.add-form img {
+.add-form .hatena-user-icon {
   vertical-align: middle;
+  margin-left: .5em;
+}
+.add-form .hatena-user-icon-empty {
+  background: lightgrey;
 }
 .add-form input {
   padding: 0.5em;
