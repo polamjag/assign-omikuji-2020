@@ -32,27 +32,7 @@ const setUsersToLocationHash = (users: User[]): void => {
 
 function App() {
   const [users, setUsers] = useState<Array<User>>([]);
-  const [currentIndex, setCurrentIndex] = useState<number | undefined>(
-    undefined
-  );
   const [luckyUsers, setLuckyUsers] = useState<Array<LuckyUser>>([]);
-
-  const requestRef = React.useRef<number>();
-
-  const animate = useCallback(() => {
-    if (users.length > 0) {
-      const idx = Math.floor(Math.random() * users.length);
-      setCurrentIndex(idx);
-    } else {
-      setCurrentIndex(undefined);
-    }
-    requestRef.current = requestAnimationFrame(animate);
-  }, [users]);
-
-  React.useEffect(() => {
-    requestRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(requestRef.current!);
-  }, [users, currentIndex, animate]);
 
   useEffect(() => {
     setUsers(getUsersFromLocationHash());
@@ -73,14 +53,10 @@ function App() {
     setUsername("");
   };
 
-  const hitLuckyUser = (): void => {
-    if (currentIndex === undefined) {
-      return;
-    }
-
+  const hitLuckyUser = (user: User): void => {
     const lu: LuckyUser = {
       beenLuckyAt: new Date(),
-      user: users[currentIndex],
+      user,
     };
 
     alert(lu.user.name);
@@ -143,16 +119,7 @@ function App() {
           to add user
         </div>
       </div>
-      {currentIndex !== undefined && users[currentIndex] && (
-        <>
-          <div className="pixelated omikuji">
-            <button onClick={hitLuckyUser} className="omikuji-button">
-              <HatenaUserIcon username={users[currentIndex].name} size={256} />
-            </button>
-          </div>
-          <div className="click-to-assign">CLICK TO ASSIGN</div>
-        </>
-      )}
+      <IconOmikujiSlot users={users} onSelectUser={hitLuckyUser} />
       <div className="lucky-users">
         {luckyUsers.map((lu, i) => (
           <div key={i} className="lucky-user-line">
@@ -178,6 +145,46 @@ function App() {
     </div>
   );
 }
+
+const IconOmikujiSlot: React.FC<{
+  readonly users: User[];
+  onSelectUser: (user: User) => void;
+}> = ({ users, onSelectUser }) => {
+  const [currentIndex, setCurrentIndex] = useState<number | undefined>(
+    undefined
+  );
+
+  const requestRef = React.useRef<number>();
+
+  const animate = useCallback(() => {
+    if (users.length > 0) {
+      const idx = Math.floor(Math.random() * users.length);
+      setCurrentIndex(idx);
+    } else {
+      setCurrentIndex(undefined);
+    }
+    requestRef.current = requestAnimationFrame(animate);
+  }, [users]);
+
+  useEffect(() => {
+    requestRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(requestRef.current!);
+  }, [users, currentIndex, animate]);
+
+  return currentIndex !== undefined && users[currentIndex] ? (
+    <>
+      <div className="pixelated omikuji">
+        <button
+          onClick={() => onSelectUser(users[currentIndex])}
+          className="omikuji-button"
+        >
+          <HatenaUserIcon username={users[currentIndex].name} size={256} />
+        </button>
+      </div>
+      <div className="click-to-assign">CLICK TO ASSIGN</div>
+    </>
+  ) : null;
+};
 
 const HatenaUserChip: React.FC<{ readonly user: User }> = ({ user }) => (
   <span>
