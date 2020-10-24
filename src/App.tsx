@@ -49,7 +49,7 @@ function App() {
   }, []);
   useEffect(() => {
     // eslint-disable-next-line no-restricted-globals
-    location.hash = users.join(",");
+    location.hash = users.map(u => u.name).join(",");
   }, [users]);
 
   const [username, setUsername] = useState<string>("");
