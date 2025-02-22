@@ -106,6 +106,10 @@ button {
   display: inline-block;
   padding: 1em;
   margin-top: 0.3em;
+  width: 256px;
+  height: 256px;
+  background: transparent;
+  transition: background 0.3s;
 }
 .omikuji-button {
   background: white;
@@ -123,37 +127,34 @@ button {
 }
 .click-to-assign {
   font-weight: 900;
-  font-size: 1em;
+  font-size: 1.3em;
   font-style: oblique;
   margin-top: -3em;
+  -webkit-text-stroke: 0.5em #fff;
+  paint-order: stroke fill;
 }
 .omikuji:hover {
-  animation: super-flash 1s infinite;
+  animation: super-flash .7s infinite ease-out;
 }
 .omikuji:hover + .click-to-assign {
-  animation: super-flash-text 1s infinite;
+  animation: super-flash-text .4s infinite ease-out;
+  /* text-shadow: none; */
 }
 
 @keyframes super-flash {
   0% {
     background: #ff5656;
   }
-  50% {
-    background: #cdff56;
-  }
   100% {
-    background: #ff5656;
+    background: #cdff56;
   }
 }
 @keyframes super-flash-text {
   0% {
     color: #ff5656;
   }
-  50% {
-    color: #cdff56;
-  }
   100% {
-    color: #ff5656;
+    color: #cdff56;
   }
 }
 
@@ -177,6 +178,7 @@ footer {
   margin-top: 1em;
   font-size: 0.8em;
   line-height: 1.5;
+  opacity: 0.7;
 }
 footer img {
   vertical-align: text-top;
