@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
-import { LuckyUser, setUsersToLocationHash, User } from "./utils";
+import { LuckyUser, setUsersToLocationHash, User } from "./users";
 
-function App({ initialUsers }: { initialUsers: User[] }) {
+export function App({ initialUsers }: { initialUsers: User[] }) {
   const [users, setUsers] = useState<Array<User>>(initialUsers);
   const [luckyUsers, setLuckyUsers] = useState<Array<LuckyUser>>([]);
 
@@ -68,7 +68,7 @@ function App({ initialUsers }: { initialUsers: User[] }) {
   );
 }
 
-const AddForm: React.FC<{
+export const AddForm: React.FC<{
   onAddUserByName: (name: string) => void;
   requestRemoveLastUser: () => void;
 }> = ({ onAddUserByName, requestRemoveLastUser }) => {
@@ -119,7 +119,7 @@ const AddForm: React.FC<{
   );
 };
 
-const IconOmikujiSlot: React.FC<{
+export const IconOmikujiSlot: React.FC<{
   readonly users: User[];
   onSelectUser: (user: User) => void;
 }> = ({ users, onSelectUser }) => {
@@ -127,7 +127,7 @@ const IconOmikujiSlot: React.FC<{
     undefined
   );
 
-  const requestRef = React.useRef<number>(0);
+  const requestRef = React.useRef<number | undefined>(undefined);
 
   const animate = useCallback(() => {
     if (users.length > 0) {
@@ -150,6 +150,7 @@ const IconOmikujiSlot: React.FC<{
         <button
           onClick={() => onSelectUser(users[currentIndex])}
           className="omikuji-button"
+          data-testid="omikuji-button"
         >
           <HatenaUserIcon username={users[currentIndex].name} size={256} />
         </button>
@@ -204,5 +205,3 @@ const Footer = () => (
     </a>
   </footer>
 );
-
-export default App;

@@ -1,9 +1,8 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import { getUsersFromLocationHash } from "./utils";
+import { App } from "./App";
+import { getUsersFromLocationHash } from "./users";
 
 const initialUsers = getUsersFromLocationHash();
 
@@ -13,5 +12,3 @@ root.render(
     <App initialUsers={initialUsers} />
   </React.StrictMode>
 );
-
-serviceWorker.register();
