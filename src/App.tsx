@@ -138,7 +138,7 @@ export const AddForm: React.FC<{
         </button>
       </span>
       <div className="small-description">
-        <kbd>Enter</kbd> to add user / <kbd>Backspace</kbd> to remove last user
+        Hint: <kbd>Enter</kbd> to add user / <kbd>Backspace</kbd> to remove last user
       </div>
     </div>
   );
