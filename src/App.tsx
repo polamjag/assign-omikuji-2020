@@ -158,7 +158,7 @@ const IconOmikujiSlot: React.FC<{
     undefined
   );
 
-  const requestRef = React.useRef<number>();
+  const requestRef = React.useRef<number>(0);
 
   const animate = useCallback(() => {
     if (users.length > 0) {
