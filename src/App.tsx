@@ -59,7 +59,7 @@ export function App({ initialUsers }: { initialUsers: User[] }) {
       <div className="lucky-users">
         {luckyUsers.map((lu, i) => (
           <div key={i} className="lucky-user-line">
-            {lu.beenLuckyAt.toISOString()}: <HatenaUserChip user={lu.user} />
+            <HatenaUserChip user={lu.user} /> — <small>{lu.beenLuckyAt.toLocaleString()}</small>
           </div>
         ))}
       </div>
@@ -106,14 +106,14 @@ export const AddForm: React.FC<{
         </button>
       </span>
       <div className="small-description">
-        <kbd aria-label="backspace" title="[Backspace]">
-          ⌫
+        <kbd>
+          Enter
         </kbd>{" "}
-        to remove last user /{" "}
-        <kbd aria-label="enter" title="[Enter]">
-          ↩
+        to add user /{" "}
+        <kbd>
+          Backspace
         </kbd>{" "}
-        to add user
+        to remove last user
       </div>
     </div>
   );
