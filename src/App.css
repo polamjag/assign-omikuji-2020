@@ -122,6 +122,9 @@ button {
 
   /* avoid pokémon shock */
   opacity: 0.2;
+
+  margin: 0;
+  padding: 0;
 }
 .click-to-assign {
   font-weight: 900;
@@ -139,7 +142,7 @@ button {
   animation: super-flash-text .4s infinite ease-out;
   transform: scale(1.1);
   transform-origin: 50% 50%;
-  -webkit-text-stroke: 0.2em #fffa;
+  -webkit-text-stroke: 0.2em #fff;
   paint-order: stroke fill;
 }
 
