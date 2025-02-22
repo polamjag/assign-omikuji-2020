@@ -6,6 +6,10 @@ export function App({ initialUsers }: { initialUsers: User[] }) {
   const [users, setUsers] = useState<Array<User>>(initialUsers);
   const [luckyUsers, setLuckyUsers] = useState<Array<LuckyUser>>([]);
 
+  const [isShowingLatestLuckyUser, setIsShowingLatestLuckyUser] =
+    useState<boolean>(false);
+  const dialogRef = React.useRef<HTMLDialogElement>(null);
+
   useEffect(() => {
     setUsersToLocationHash(users);
   }, [users]);
@@ -15,10 +19,10 @@ export function App({ initialUsers }: { initialUsers: User[] }) {
       beenLuckyAt: new Date(),
       user,
     };
-
-    alert(lu.user.name);
-
     setLuckyUsers([lu, ...luckyUsers]);
+
+    setIsShowingLatestLuckyUser(true);
+    dialogRef.current?.showModal();
   };
 
   const removeUserAt = (idx: number): void => {
@@ -55,15 +59,43 @@ export function App({ initialUsers }: { initialUsers: User[] }) {
         onAddUserByName={onAddUserByName}
         requestRemoveLastUser={requestRemoveLastUser}
       />
-      <IconOmikujiSlot users={users} onSelectUser={hitLuckyUser} />
+      <IconOmikujiSlot
+        users={users}
+        onSelectUser={hitLuckyUser}
+        isPaused={isShowingLatestLuckyUser}
+      />
       <div className="lucky-users">
         {luckyUsers.map((lu, i) => (
           <div key={i} className="lucky-user-line">
-            <HatenaUserChip user={lu.user} /> — <small>{lu.beenLuckyAt.toLocaleString()}</small>
+            <HatenaUserChip user={lu.user} /> —{" "}
+            <small>{lu.beenLuckyAt.toLocaleString()}</small>
           </div>
         ))}
       </div>
       <Footer />
+      <dialog ref={dialogRef} className="latest-lucky-user-dialog">
+        {luckyUsers.length > 0 ? (
+          <>
+            <h4 className="latest-lucky-user-dialog-heading">New assignee</h4>
+            <div>
+              <HatenaUserIcon username={luckyUsers[0].user.name} size={256} />
+            </div>
+            <div>id:{luckyUsers[0].user.name}</div>
+            <div className="latest-lucky-user-dialog-date">
+              {luckyUsers[0].beenLuckyAt.toLocaleString()}
+            </div>
+          </>
+        ) : null}
+        <button
+          onClick={() => {
+            dialogRef.current?.close();
+            setIsShowingLatestLuckyUser(false);
+          }}
+          className="latest-lucky-user-dialog-ok-btn"
+        >
+          OK
+        </button>
+      </dialog>
     </div>
   );
 }
@@ -106,14 +138,7 @@ export const AddForm: React.FC<{
         </button>
       </span>
       <div className="small-description">
-        <kbd>
-          Enter
-        </kbd>{" "}
-        to add user /{" "}
-        <kbd>
-          Backspace
-        </kbd>{" "}
-        to remove last user
+        <kbd>Enter</kbd> to add user / <kbd>Backspace</kbd> to remove last user
       </div>
     </div>
   );
@@ -122,7 +147,8 @@ export const AddForm: React.FC<{
 export const IconOmikujiSlot: React.FC<{
   readonly users: User[];
   onSelectUser: (user: User) => void;
-}> = ({ users, onSelectUser }) => {
+  isPaused: boolean;
+}> = ({ users, onSelectUser, isPaused }) => {
   const [currentIndex, setCurrentIndex] = useState<number | undefined>(
     undefined
   );
@@ -130,6 +156,10 @@ export const IconOmikujiSlot: React.FC<{
   const requestRef = React.useRef<number | undefined>(undefined);
 
   const animate = useCallback(() => {
+    if (isPaused) {
+      return;
+    }
+
     if (users.length > 0) {
       const idx = Math.floor(Math.random() * users.length);
       setCurrentIndex(idx);
@@ -137,7 +167,7 @@ export const IconOmikujiSlot: React.FC<{
       setCurrentIndex(undefined);
     }
     requestRef.current = requestAnimationFrame(animate);
-  }, [users]);
+  }, [users, isPaused]);
 
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
