@@ -10,8 +10,6 @@ export interface LuckyUser {
 export const getUsersFromLocationHash = (): User[] => {
   /* eslint-disable no-restricted-globals */
 
-  console.log(location.hash)
-
   if (location.hash === "") {
     return [];
   }
