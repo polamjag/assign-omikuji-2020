@@ -1,42 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
+import { LuckyUser, setUsersToLocationHash, User } from "./utils";
 
-interface User {
-  name: string;
-}
-
-interface LuckyUser {
-  readonly beenLuckyAt: Date;
-  readonly user: User;
-}
-
-const getUsersFromLocationHash = (): User[] => {
-  /* eslint-disable no-restricted-globals */
-
-  if (location.hash === "") {
-    return [];
-  }
-
-  return location.hash
-    .substr(1)
-    .split(",")
-    .map((name) => ({ name }));
-
-  /* eslint-enable no-restricted-globals */
-};
-
-const setUsersToLocationHash = (users: User[]): void => {
-  // eslint-disable-next-line no-restricted-globals
-  location.hash = users.map((u) => u.name).join(",");
-};
-
-function App() {
-  const [users, setUsers] = useState<Array<User>>([]);
+function App({ initialUsers }: { initialUsers: User[] }) {
+  const [users, setUsers] = useState<Array<User>>(initialUsers);
   const [luckyUsers, setLuckyUsers] = useState<Array<LuckyUser>>([]);
 
-  useEffect(() => {
-    setUsers(getUsersFromLocationHash());
-  }, []);
   useEffect(() => {
     setUsersToLocationHash(users);
   }, [users]);
