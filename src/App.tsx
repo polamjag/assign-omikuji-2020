@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
-import { LuckyUser, setUsersToLocationHash, User } from "./users";
+import { getUsersFromLocationHash, LuckyUser, setUsersToLocationHash, User } from "./users";
 
 export function App({ initialUsers }: { initialUsers: User[] }) {
   const [users, setUsers] = useState<Array<User>>(initialUsers);
@@ -9,6 +9,15 @@ export function App({ initialUsers }: { initialUsers: User[] }) {
   const [isShowingLatestLuckyUser, setIsShowingLatestLuckyUser] =
     useState<boolean>(false);
   const dialogRef = React.useRef<HTMLDialogElement>(null);
+
+  const setUserFromHash = useCallback(() => {
+    setUsers(getUsersFromLocationHash());
+  }, [setUsers, getUsersFromLocationHash]);
+
+  useEffect(() => {
+    window.addEventListener('hashchange', setUserFromHash);
+    return () => window.removeEventListener('hashchange', setUserFromHash);
+  }, [setUserFromHash]);
 
   useEffect(() => {
     setUsersToLocationHash(users);
