@@ -112,7 +112,7 @@ export const AddForm: React.FC<{
     if (username === "") {
       return;
     }
-    onAddUserByName(username);
+    onAddUserByName(username.trim());
     setUsername("");
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -126,7 +126,7 @@ export const AddForm: React.FC<{
   return (
     <div className="add-form">
       <span>
-        <HatenaUserIcon username={username} />
+        <HatenaUserIcon username={username.trim()} />
         <input
           onKeyDown={handleKeyDown}
           onChange={onChange}
