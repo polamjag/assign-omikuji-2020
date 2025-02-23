@@ -195,6 +195,19 @@ button {
   border: 6px solid;
   border-image: linear-gradient(var(--angle),#0003,#0004,#0002) 1;
   animation: 4s rotate ease infinite;
+
+  transition: opacity .08s ease, transform .08s ease;
+  opacity: 0;
+
+  &[open] {
+    opacity: 1;
+    transform: scale(1); /* New scale effect when the dialog is open */
+
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.96); /* Reset scale for starting style */
+    }
+  }
 }
 .latest-lucky-user-dialog-heading {
   margin: 0 0 0.5em 0;
