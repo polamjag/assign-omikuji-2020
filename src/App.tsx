@@ -160,7 +160,7 @@ export const IconOmikujiSlot: React.FC<{
   isPaused: boolean;
 }> = ({ users, onSelectUser, isPaused }) => {
   const [currentIndex, setCurrentIndex] = useState<number | undefined>(
-    undefined
+    users.length > 0 ? 0 : undefined
   );
 
   const requestRef = React.useRef<number | undefined>(undefined);

@@ -5,7 +5,15 @@ import {
   render,
 } from "@testing-library/react";
 import { App, AddForm, IconOmikujiSlot } from "./App";
-import { describe, expect, test, vi, vitest } from "vitest";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+  vitest,
+} from "vitest";
 
 test("renders heading", () => {
   const { getByText } = render(<App initialUsers={[]} />);
@@ -52,19 +60,23 @@ describe("AddForm", () => {
 });
 
 describe("IconOmikujiSlot", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
   test("renders icon omikuji slot", () => {
     const users = [{ name: "Alice" }, { name: "Bob" }];
     const onSelectUser = vitest.fn();
-    vi.useFakeTimers();
 
-    const { getByText, getByTestId } = render(
-      <IconOmikujiSlot users={users} onSelectUser={onSelectUser} />
+    const { getByTestId } = render(
+      <IconOmikujiSlot
+        users={users}
+        onSelectUser={onSelectUser}
+        isPaused={false}
+      />
     );
 
-    vitest.advanceTimersToNextFrame();
-    vitest.advanceTimersToNextFrame();
-    vitest.advanceTimersToNextFrame();
-    vitest.advanceTimersToNextFrame();
+    vitest.advanceTimersToNextFrame()
 
     const buttonElement = getByTestId("omikuji-button");
     expect(buttonElement).toBeInTheDocument();
