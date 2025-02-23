@@ -82,7 +82,7 @@ export function App({ initialUsers }: { initialUsers: User[] }) {
         {luckyUsers.length > 0 ? (
           <>
             <h4 className="latest-lucky-user-dialog-heading">New assignee</h4>
-            <div>
+            <div className="latest-lucky-user-dialog-icon">
               <HatenaUserIcon username={luckyUsers[0].user.name} size={256} />
             </div>
             <div>id:{luckyUsers[0].user.name}</div>

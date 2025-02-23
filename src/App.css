@@ -192,6 +192,9 @@ button {
   background: white;
   margin: 0 auto;
   top: 2em;
+  border: 3px solid;
+  border-image: linear-gradient(var(--angle),rgb(213, 248, 54),rgb(113, 237, 117),rgb(82, 255, 82)) 1;
+  animation: 3s rotate ease infinite;
 }
 .latest-lucky-user-dialog-heading {
   margin: 0 0 0.5em 0;
@@ -200,6 +203,21 @@ button {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #999;
+}
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.latest-lucky-user-dialog-icon img {
+  background: white;
+  box-shadow: 0 0 8px #0001;
 }
 .latest-lucky-user-dialog-date {
   font-size: 0.4em;
@@ -211,8 +229,8 @@ button {
   margin-top: 0.6em;
 }
 .latest-lucky-user-dialog::backdrop {
-  backdrop-filter: blur(2px);
-  background: #0006;
+  backdrop-filter: blur(2px) saturate(0%);
+  background: #0002;
 }
 
 footer {
