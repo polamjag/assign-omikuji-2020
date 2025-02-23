@@ -180,8 +180,7 @@ export const IconOmikujiSlot: React.FC<{
   }, [users, isPaused]);
 
   useEffect(() => {
-    requestRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(requestRef.current!);
+    requestRef.current = window.requestAnimationFrame(animate);
   }, [users, currentIndex, animate]);
 
   return currentIndex !== undefined && users[currentIndex] ? (
