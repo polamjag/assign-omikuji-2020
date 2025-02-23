@@ -172,6 +172,13 @@ button {
   margin-top: 4em;
   line-height: 1.6em;
 }
+.lucky-users-heading {
+  font-weight: 300;
+  color: grey;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 1em 0 0.2em 0;
+}
 .lucky-user-line img {
   vertical-align: text-top;
 }

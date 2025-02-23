@@ -65,12 +65,17 @@ export function App({ initialUsers }: { initialUsers: User[] }) {
         isPaused={isShowingLatestLuckyUser}
       />
       <div className="lucky-users">
-        {luckyUsers.map((lu, i) => (
-          <div key={i} className="lucky-user-line">
-            <HatenaUserChip user={lu.user} /> —{" "}
-            <small>{lu.beenLuckyAt.toLocaleString()}</small>
-          </div>
-        ))}
+        {luckyUsers.length === 0 ? null : (
+          <>
+            <h3 className="lucky-users-heading">Assignation History</h3>
+            {luckyUsers.map((lu, i) => (
+              <div key={i} className="lucky-user-line">
+                <HatenaUserChip user={lu.user} /> —{" "}
+                <small>{lu.beenLuckyAt.toLocaleString()}</small>
+              </div>
+            ))}
+          </>
+        )}
       </div>
       <Footer />
       <dialog ref={dialogRef} className="latest-lucky-user-dialog">
