@@ -132,6 +132,10 @@ export const AddForm: React.FC<{
           onChange={onChange}
           value={username}
           placeholder="Hatena ID"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck="false"
+          autoComplete="off"
         />
         <button onClick={onClick} type="button">
           Add user
