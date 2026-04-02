@@ -192,15 +192,19 @@ export const IconOmikujiSlot: React.FC<{
     requestRef.current = window.requestAnimationFrame(animate);
   }, [users, currentIndex, animate]);
 
-  return currentIndex !== undefined && users[currentIndex] ? (
+  return users.length > 0 ? (
     <>
       <div className="pixelated omikuji">
         <button
-          onClick={() => onSelectUser(users[currentIndex])}
+          onClick={() => currentIndex !== undefined && users[currentIndex] && onSelectUser(users[currentIndex])}
           className="omikuji-button"
           data-testid="omikuji-button"
         >
-          <HatenaUserIcon username={users[currentIndex].name} size={256} />
+          {users.map((user, idx) => (
+            <div key={user.name} className={`omikuji-item${idx === currentIndex ? ' is-active' : ''}`}>
+              <HatenaUserIcon username={user.name} size={256} />
+            </div>
+          ))}
         </button>
       </div>
       <div className="click-to-assign">CLICK TO ASSIGN</div>

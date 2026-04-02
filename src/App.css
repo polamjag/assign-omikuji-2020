@@ -117,6 +117,12 @@ button {
   width: 256px;
   height: 256px;
 }
+.omikuji-item {
+  display: none;
+}
+.omikuji-item.is-active {
+  display: block;
+}
 .omikuji img {
   background: #fff;
 
