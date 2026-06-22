@@ -248,6 +248,8 @@ button {
   margin-top: 0.6em;
 }
 .latest-lucky-user-dialog-actions {
+  display: flex;
+  justify-content: center;
   margin-top: 0.4em;
 }
 .latest-lucky-user-dialog-copy-btn {
