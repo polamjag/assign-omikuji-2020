@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import "./App.css";
 import { getUsersFromLocationHash, LuckyUser, setUsersToLocationHash, User } from "./users";
 
@@ -8,7 +8,20 @@ export function App({ initialUsers }: { initialUsers: User[] }) {
 
   const [isShowingLatestLuckyUser, setIsShowingLatestLuckyUser] =
     useState<boolean>(false);
+  const [copyButtonLabel, setCopyButtonLabel] = useState<string>("Copy as Markdown");
+  const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const dialogRef = React.useRef<HTMLDialogElement>(null);
+
+  const copyAsMarkdown = useCallback(() => {
+    if (luckyUsers.length === 0) return;
+    const { user, beenLuckyAt } = luckyUsers[0];
+    const markdown = `**New Assignee**: id:${user.name} — ${beenLuckyAt.toLocaleString()}`;
+    navigator.clipboard.writeText(markdown).then(() => {
+      setCopyButtonLabel("Copied!");
+      clearTimeout(copyTimeoutRef.current);
+      copyTimeoutRef.current = setTimeout(() => setCopyButtonLabel("Copy as Markdown"), 2000);
+    });
+  }, [luckyUsers]);
 
   const setUserFromHash = useCallback(() => {
     setUsers(getUsersFromLocationHash());
@@ -97,6 +110,15 @@ export function App({ initialUsers }: { initialUsers: User[] }) {
             <div>id:{luckyUsers[0].user.name}</div>
             <div className="latest-lucky-user-dialog-date">
               {luckyUsers[0].beenLuckyAt.toLocaleString()}
+            </div>
+            <div className="latest-lucky-user-dialog-actions">
+              <button
+                onClick={copyAsMarkdown}
+                className="latest-lucky-user-dialog-copy-btn"
+                data-testid="copy-as-markdown-btn"
+              >
+                {copyButtonLabel}
+              </button>
             </div>
           </>
         ) : null}
